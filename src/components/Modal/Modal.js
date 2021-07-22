@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
-import getModalState from '../../redux/selectors';
-import { toggleModal } from '../../redux/operations';
+import Form from '../Form';
 
 class Modal extends Component {
   state = {};
@@ -29,7 +28,7 @@ class Modal extends Component {
       <div>
         <div className={styles.overlay}>
           <div className={styles.content}>
-            <h1>modal</h1>
+            <Form />
           </div>
         </div>
       </div>,

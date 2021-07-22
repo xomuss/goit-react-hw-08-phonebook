@@ -1,9 +1,9 @@
-import toggleModalWindowAction from './auth-actions';
+import { toggleModalWindowAction } from './auth-actions';
 
-const toggleModal = () => dispatch => {
-  dispatch(toggleModalWindowAction);
+export const toggleModal = () => dispatch => {
+  dispatch(toggleModalWindowAction());
 };
 
-export default {
-  toggleModal,
-};
+// export default {
+//   toggleModal()
+// };

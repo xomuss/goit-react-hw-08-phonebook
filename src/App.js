@@ -8,13 +8,14 @@ import ContactsPage from './views/ContactsPage';
 import RegistrationPage from './views/RegistrationPage';
 import LoginPage from './views/LoginPage';
 import Modal from './components/Modal';
-import { authOperations } from './redux/auth';
 import { connect } from 'react-redux';
+import { toggleModal } from './redux/auth/auth-operations';
+import getModalState from './redux/auth/auth-selectors';
 
 class App extends Component {
   state = {};
   render() {
-    console.log(authOperations.toggleModal);
+    console.log(toggleModal);
     return (
       <div className="App">
         <Header modalSwitcher={this.props.modalSwitcher} />
@@ -35,8 +36,12 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  modalSwitcher: () => dispatch(authOperations.toggleModal()),
+const mapStateToProps = state => ({
+  modal: getModalState(state),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  modalSwitcher: () => dispatch(toggleModal()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
