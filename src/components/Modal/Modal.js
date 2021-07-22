@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
-import Form from '../Form';
+import getModalState from '../../redux/selectors';
+import { toggleModal } from '../../redux/operations';
 
 class Modal extends Component {
   state = {};
@@ -15,10 +16,12 @@ class Modal extends Component {
   }
 
   toggleModal = evt => {
-    if (evt.code !== 'Escape') {
-      return;
+    console.log(evt);
+    if (evt.code === 'Escape') {
+      // const value = this.props.modal;
+      // console.log(value);
+      this.props.modalSwitcher();
     }
-    this.props.modalSwitcher();
   };
 
   render() {
@@ -26,7 +29,7 @@ class Modal extends Component {
       <div>
         <div className={styles.overlay}>
           <div className={styles.content}>
-            <Form />
+            <h1>modal</h1>
           </div>
         </div>
       </div>,
