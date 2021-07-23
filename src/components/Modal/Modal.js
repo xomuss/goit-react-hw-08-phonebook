@@ -15,12 +15,10 @@ class Modal extends Component {
   }
 
   toggleModal = evt => {
-    console.log(evt);
-    if (evt.code === 'Escape') {
-      // const value = this.props.modal;
-      // console.log(value);
-      this.props.modalSwitcher();
+    if (evt.code !== 'Escape') {
+      return;
     }
+    this.props.modalSwitcher();
   };
 
   render() {
