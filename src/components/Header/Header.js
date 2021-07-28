@@ -1,29 +1,22 @@
 import React from 'react';
-import routs from '../../routs';
-import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import styles from './Header.module.css';
+import Navigation from './Navigation';
+import AuthNav from './AuthNav';
+import UserMenu from './UserMenu';
+import { authSelectors } from '../../redux/auth';
 
-const Header = ({ modalSwitcher }) => {
+const Header = ({ isAuthenticated }) => {
   return (
-    <>
-      <ul>
-        <li>
-          <NavLink to={routs.home}>Home</NavLink>
-        </li>
-        <li>
-          <NavLink to={routs.registration}>Registration</NavLink>
-        </li>
-        <li>
-          <NavLink to={routs.login}>Login</NavLink>
-        </li>
-        <li>
-          <NavLink to={routs.contacts}>Contacts</NavLink>
-        </li>
-      </ul>
-      <button type="button" onClick={modalSwitcher}>
-        modal
-      </button>
-    </>
+    <header className={styles.list}>
+      <Navigation />
+      {isAuthenticated ? <UserMenu /> : <AuthNav />}
+    </header>
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(Header);

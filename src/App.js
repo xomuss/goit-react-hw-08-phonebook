@@ -10,7 +10,7 @@ import LoginPage from './views/LoginPage';
 import Modal from './components/Modal';
 import { connect } from 'react-redux';
 import { toggleModal } from './redux/auth/auth-operations';
-import getModalState from './redux/auth/auth-selectors';
+import { authSelectors } from './redux/auth';
 
 class App extends Component {
   state = {};
@@ -25,7 +25,7 @@ class App extends Component {
           <Route exact path={routs.registration} component={RegistrationPage} />
           <Route exact path={routs.login} component={LoginPage} />
         </Switch>
-        {this.props.modal && (
+        {this.props.isModalOpen && (
           <Modal
             modalSwitcher={this.props.modalSwitcher}
             // modal={this.props.modal}
@@ -37,7 +37,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  modal: getModalState(state),
+  isModalOpen: authSelectors.getModalState(state),
 });
 
 const mapDispatchToProps = dispatch => ({

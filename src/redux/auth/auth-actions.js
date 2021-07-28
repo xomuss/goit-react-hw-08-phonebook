@@ -6,13 +6,13 @@ export const registerRequest = createAction('auth/registerRequest');
 export const registerSucces = createAction('auth/registerSucces');
 export const registerError = createAction('auth/registerError');
 
-const loginRequest = createAction('auth/loginRequest');
-const loginSucces = createAction('auth/loginSucces');
-const loginError = createAction('auth/loginError');
+export const loginRequest = createAction('auth/loginRequest');
+export const loginSucces = createAction('auth/loginSucces');
+export const loginError = createAction('auth/loginError');
 
-const logoutRequest = createAction('auth/logoutRequest');
-const logoutSucces = createAction('auth/logoutSucces');
-const logoutError = createAction('auth/logoutError');
+export const logoutRequest = createAction('auth/logoutRequest');
+export const logoutSucces = createAction('auth/logoutSucces');
+export const logoutError = createAction('auth/logoutError');
 
 const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSucces = createAction('auth/getCurrentUserSucces');

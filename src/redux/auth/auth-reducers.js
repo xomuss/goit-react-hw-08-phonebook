@@ -1,23 +1,40 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import {
   toggleModalWindowAction,
-  registerRequest,
   registerSucces,
   registerError,
+  loginSucces,
+  loginError,
+  logoutSucces,
+  logoutError,
 } from './auth-actions';
 
-const modalReducer = createReducer(null, {
+const modal = createReducer(null, {
   [toggleModalWindowAction]: (state, _) => !state,
 });
 
-const user = createReducer(null, {});
+const initialState = { name: null, email: null };
 
-const token = createReducer(null, {});
+const user = createReducer(initialState, {
+  [registerSucces]: (_, { payload }) => payload.user,
+  [loginSucces]: (_, { payload }) => payload.user,
+  [logoutSucces]: () => initialState,
+});
 
-const error = createReducer(null, {});
+const token = createReducer(null, {
+  [registerSucces]: (_, { payload }) => payload.token,
+  [loginSucces]: (_, { payload }) => payload.token,
+  [logoutSucces]: () => null,
+});
+
+const error = createReducer(null, {
+  [registerError]: (_, { payload }) => payload,
+  [loginError]: (_, { payload }) => payload,
+  [logoutError]: (_, { payload }) => payload,
+});
 
 export default combineReducers({
-  modalReducer,
+  modal,
   user,
   token,
   error,

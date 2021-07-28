@@ -19,7 +19,7 @@ class Form extends Component {
 
     this.props.onRegister(this.state);
 
-    this.setState({ username: '', mail: '', password: '' });
+    this.setState({ name: '', email: '', password: '' });
   };
 
   handleChange = evt => {
