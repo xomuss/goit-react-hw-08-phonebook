@@ -9,6 +9,7 @@ import RegistrationPage from './views/RegistrationPage';
 import LoginPage from './views/LoginPage';
 import { connect } from 'react-redux';
 import { toggleModal, getCurrentUser } from './redux/auth/auth-operations';
+import PrivateRoute from './components/PrivateRout';
 
 class App extends Component {
   state = {};
@@ -24,9 +25,13 @@ class App extends Component {
         <Header modalSwitcher={this.props.modalSwitcher} />
         <Switch>
           <Route exact path={routs.home} component={HomePage} />
-          <Route exact path={routs.contacts} component={ContactsPage} />
-          <Route exact path={routs.registration} component={RegistrationPage} />
-          <Route exact path={routs.login} component={LoginPage} />
+          <PrivateRoute
+            path={routs.contacts}
+            component={ContactsPage}
+            redirectTo={routs.login}
+          />
+          <Route path={routs.registration} component={RegistrationPage} />
+          <Route path={routs.login} component={LoginPage} />
         </Switch>
       </div>
     );

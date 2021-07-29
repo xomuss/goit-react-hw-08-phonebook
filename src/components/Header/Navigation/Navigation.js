@@ -1,18 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import routs from '../../../routs';
+import { authSelectors } from '../../../redux/auth';
+import styles from './Navigation.module.css';
 
-const Navigation = () => {
+const Navigation = ({ isAuthenticated }) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       <li>
         <NavLink to={routs.home}>Home</NavLink>
       </li>
-      <li>
-        <NavLink to={routs.contacts}>Contacts</NavLink>
-      </li>
+      {isAuthenticated && (
+        <li>
+          <NavLink to={routs.contacts}>Contacts</NavLink>
+        </li>
+      )}
     </ul>
   );
 };
 
-export default Navigation;
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(Navigation);
