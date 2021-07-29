@@ -7,6 +7,8 @@ import {
   loginError,
   logoutSucces,
   logoutError,
+  getCurrentUserSucces,
+  getCurrentUserError,
 } from './auth-actions';
 
 const modal = createReducer(null, {
@@ -19,6 +21,7 @@ const user = createReducer(initialState, {
   [registerSucces]: (_, { payload }) => payload.user,
   [loginSucces]: (_, { payload }) => payload.user,
   [logoutSucces]: () => initialState,
+  [getCurrentUserSucces]: (_, { payload }) => payload,
 });
 
 const token = createReducer(null, {
@@ -31,6 +34,7 @@ const error = createReducer(null, {
   [registerError]: (_, { payload }) => payload,
   [loginError]: (_, { payload }) => payload,
   [logoutError]: (_, { payload }) => payload,
+  [getCurrentUserError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({

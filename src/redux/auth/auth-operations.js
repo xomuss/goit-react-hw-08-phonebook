@@ -10,6 +10,9 @@ import {
   logoutRequest,
   logoutSucces,
   logoutError,
+  getCurrentUserRequest,
+  getCurrentUserSucces,
+  getCurrentUserError,
 } from './auth-actions';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -63,5 +66,27 @@ export const logOut = () => async dispatch => {
     dispatch(logoutSucces());
   } catch (error) {
     dispatch(logoutError(error.message));
+  }
+};
+
+export const getCurrentUser = () => async (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+
+  if (!persistedToken) {
+    return;
+  }
+
+  token.set(persistedToken);
+
+  dispatch(getCurrentUserRequest());
+
+  try {
+    const response = await axios.get('/users/current');
+
+    dispatch(getCurrentUserSucces(response.data));
+  } catch (error) {
+    dispatch(getCurrentUserError(error.message));
   }
 };

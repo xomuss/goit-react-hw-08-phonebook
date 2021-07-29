@@ -7,13 +7,16 @@ import HomePage from './views/HomePage';
 import ContactsPage from './views/ContactsPage';
 import RegistrationPage from './views/RegistrationPage';
 import LoginPage from './views/LoginPage';
-import Modal from './components/Modal';
 import { connect } from 'react-redux';
-import { toggleModal } from './redux/auth/auth-operations';
-import { authSelectors } from './redux/auth';
+import { toggleModal, getCurrentUser } from './redux/auth/auth-operations';
 
 class App extends Component {
   state = {};
+
+  componentDidMount() {
+    this.props.onGetCurrentUser();
+  }
+
   render() {
     console.log(toggleModal);
     return (
@@ -25,23 +28,13 @@ class App extends Component {
           <Route exact path={routs.registration} component={RegistrationPage} />
           <Route exact path={routs.login} component={LoginPage} />
         </Switch>
-        {this.props.isModalOpen && (
-          <Modal
-            modalSwitcher={this.props.modalSwitcher}
-            // modal={this.props.modal}
-          />
-        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  isModalOpen: authSelectors.getModalState(state),
-});
+const mapDispatchToProps = {
+  onGetCurrentUser: getCurrentUser,
+};
 
-const mapDispatchToProps = dispatch => ({
-  modalSwitcher: () => dispatch(toggleModal()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
