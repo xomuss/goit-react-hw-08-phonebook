@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { phonebookSelectors, filterContscts } from '../../redux/phonebook';
 
 const Filter = ({ onChange, value }) => (
-  <label>
+  <label className={styles.label}>
     Find contacts by name
     <input
-      className={styles.filter__input}
+      className={styles.input}
       onChange={onChange}
       value={value}
       name="filter"

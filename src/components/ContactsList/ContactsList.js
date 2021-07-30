@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styles from './ContactList.module.css';
 import { phonebookOperations, phonebookSelectors } from '../../redux/phonebook';
+
 const ContactsList = ({ contactsData, onDeleteContact }) => (
   <ul className={styles.contsct__list}>
     {contactsData.map(({ name, number, id }) => (

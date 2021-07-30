@@ -9,11 +9,15 @@ const Navigation = ({ isAuthenticated }) => {
   return (
     <ul className={styles.list}>
       <li>
-        <NavLink to={routs.home}>Home</NavLink>
+        <NavLink className={styles.item} to={routs.home}>
+          Home
+        </NavLink>
       </li>
       {isAuthenticated && (
         <li>
-          <NavLink to={routs.contacts}>Contacts</NavLink>
+          <NavLink className={styles.item} to={routs.contacts}>
+            Contacts
+          </NavLink>
         </li>
       )}
     </ul>

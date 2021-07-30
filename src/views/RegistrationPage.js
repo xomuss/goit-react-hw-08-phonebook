@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { register } from '../redux/auth/auth-operations';
+import styles from './RegistrationPage.module.css';
 
 class RegistrationPage extends Component {
   state = {
@@ -29,10 +30,15 @@ class RegistrationPage extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} autoComplete="off">
+      <form
+        className={styles.form}
+        onSubmit={this.handleSubmit}
+        autoComplete="off"
+      >
         <label>
           Username
           <input
+            className={styles.input}
             onChange={this.handleChange}
             type="text"
             value={this.state.username}
@@ -43,6 +49,7 @@ class RegistrationPage extends Component {
         <label>
           Email
           <input
+            className={styles.input}
             onChange={this.handleChange}
             type="email"
             value={this.state.mail}
@@ -53,6 +60,7 @@ class RegistrationPage extends Component {
         <label>
           Password
           <input
+            className={styles.input}
             onChange={this.handleChange}
             type="password"
             value={this.state.password}
@@ -60,7 +68,9 @@ class RegistrationPage extends Component {
             id={this.loginPassword}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button className={styles.button} type="submit">
+          Submit
+        </button>
       </form>
     );
   }

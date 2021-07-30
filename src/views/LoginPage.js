@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { login } from '../redux/auth/auth-operations';
+import styles from './LoginPage.module.css';
 
 class LoginPage extends Component {
   state = {
@@ -27,10 +28,15 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} autoComplete="off">
+      <form
+        className={styles.form}
+        onSubmit={this.handleSubmit}
+        autoComplete="off"
+      >
         <label>
           Email
           <input
+            className={styles.input}
             onChange={this.handleChange}
             type="email"
             value={this.state.mail}
@@ -41,6 +47,7 @@ class LoginPage extends Component {
         <label>
           Password
           <input
+            className={styles.input}
             onChange={this.handleChange}
             type="password"
             value={this.state.password}
@@ -48,7 +55,9 @@ class LoginPage extends Component {
             id={this.loginPassword}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button className={styles.button} type="submit">
+          Submit
+        </button>
       </form>
     );
   }
